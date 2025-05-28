@@ -23,13 +23,13 @@ export default function ProductCard({ product, className }: ProductCardProps) {
   };
 
   return (
-    <Card 
+    <Card
       className={cn("overflow-hidden transition-all hover:shadow-md", className)}
     >
       <div className="relative aspect-square overflow-hidden">
-        <div 
+        <div
           className={cn(
-            "absolute inset-0 bg-nepal-stone image-loading", 
+            "absolute inset-0 bg-nepal-stone image-loading",
             imageLoaded ? "opacity-0" : "opacity-100"
           )}
         />

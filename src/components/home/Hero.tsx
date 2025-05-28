@@ -13,14 +13,26 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleScrollToStory = () => {
+    const el = document.getElementById("story-strip");
+    if (el) {
+      const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
       {/* Background parallax image */}
       <div className="absolute inset-0 z-0">
         <div
-          // className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1500&auto=format')] bg-cover bg-center"
           className="absolute inset-0 bg-[url('/hero1.png')] bg-cover bg-center"
-
           style={{
             transform: `translateY(${scrollY * 0.2}px)`,
           }}
@@ -36,8 +48,8 @@ export default function Hero() {
             <div className="inline-block mb-4 bg-himalaya-orange/90 px-4 py-1 rounded-sm">
               <span className="text-sm uppercase tracking-wider">{t("Handcrafted treasures from the heart of the Himalayas")}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              {t("Authentic Nepali Craftsmanship")}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 whitespace-nowrap">
+              {t("An Ageless Adventure")}
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8">
               Experience the pinnacle of Himalayan craftsmanship with gear designed and tested
@@ -47,13 +59,15 @@ export default function Hero() {
               <Button
                 size="lg"
                 className="bg-himalaya-orange hover:bg-himalaya-gold text-white"
+                asChild
               >
-                {t("Shop Now")}
+                <a href="/shop">{t("Check Our Products")}</a>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white text-himalaya-orange hover:bg-white hover:text-himalaya-maroon transition-all"
+                onClick={handleScrollToStory}
               >
                 {t("Read Our Story")}
               </Button>

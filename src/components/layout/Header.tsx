@@ -3,8 +3,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
+import { Search, Menu, X, ShoppingCart } from "lucide-react";
 import { useCurrency } from "@/contexts/CurrencyContext";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { t } = useLanguage();
@@ -12,7 +14,9 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPath, setCurrentPath] = useState("/");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -25,10 +29,19 @@ export default function Header() {
     setCurrentPath(window.location.pathname);
   }, []);
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+      setIsSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
+
   const navLinks = [
     { href: "/", label: t("Home") },
     { href: "/about", label: t("About") },
-    { href: "/shop", label: t("Shop") },
+    { href: "/shop", label: t("Products") },
     { href: "/contact", label: t("Contact") }
   ];
 
@@ -43,8 +56,17 @@ export default function Header() {
       >
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-3 items-center gap-2">
-            {/* Desktop nav (left) */}
-            <nav className="hidden md:flex items-center space-x-8 col-span-1">
+            {/* Logo (left) */}
+            <a href="/" className="flex justify-start col-span-1">
+              <img
+                src="/logo new.png"
+                alt="Lhasali Gear"
+                className="h-10 w-auto md:h-12"
+              />
+            </a>
+
+            {/* Desktop nav (center) */}
+            <nav className="hidden md:flex items-center justify-center space-x-8 col-span-1">
               {navLinks.map(link => (
                 <a
                   key={link.href}
@@ -58,32 +80,8 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Logo (center) */}
-            <a href="/" className="flex justify-center col-span-1">
-              <img
-                src="/logo new.png"
-                alt="Lhasali Gear"
-                className="h-10 w-auto md:h-12"
-              />
-            </a>
-
-            {/* Actions + toggled search (right) */}
-            <div className="flex items-center justify-end space-x-2 md:space-x-4 col-span-1">
-              {/* search toggle */}
-              <button onClick={() => setIsSearchOpen(o => !o)} className="text-white">
-                <Search className="h-5 w-5 text-white" />
-              </button>
-              {isSearchOpen && (
-                <div className="relative w-40 ml-2">
-                  <Input
-                    type="search"
-                    placeholder="Search..."
-                    className="w-full pl-8 bg-white/10 border-himalaya-orange/20 text-white placeholder:text-white/60"
-                  />
-                  <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-white/60" />
-                </div>
-              )}
-              {/* existing currency, cart, user, mobile menu */}
+            {/* Actions (right) */}
+            <div className="flex items-center justify-end space-x-4 col-span-1">
               <Button
                 variant="ghost"
                 size="sm"
@@ -91,17 +89,6 @@ export default function Header() {
                 className="text-white hover:text-white/80"
               >
                 {currency}
-              </Button>
-
-              <Button variant="ghost" size="icon" className="relative text-white">
-                <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-himalaya-gold text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">
-                  0
-                </span>
-              </Button>
-
-              <Button variant="ghost" size="icon" className="text-white">
-                <User className="h-5 w-5" />
               </Button>
 
               {/* Mobile menu button */}
@@ -116,27 +103,27 @@ export default function Header() {
               </Button>
             </div>
           </div>
-
-          {/* Mobile navigation menu */}
-          {isMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 border-t border-himalaya-orange/20">
-              <div className="flex flex-col space-y-4 pt-4">
-                {navLinks.map(link => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    rel="noopener noreferrer"
-                    className={`text-white hover:text-white/80 transition-colors font-bold uppercase text-[1.2rem] tracking-[0.05em] font-header
-                      ${currentPath === link.href ? "border-b-2 border-himalaya-gold pb-1" : ""}`}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </nav>
-          )}
         </div>
       </div>
+
+      {/* Mobile navigation menu */}
+      {isMenuOpen && (
+        <nav className="md:hidden mt-4 pb-4 border-t border-himalaya-orange/20">
+          <div className="flex flex-col space-y-4 pt-4">
+            {navLinks.map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                rel="noopener noreferrer"
+                className={`text-white hover:text-white/80 transition-colors font-bold uppercase text-[1.2rem] tracking-[0.05em] font-header
+                  ${currentPath === link.href ? "border-b-2 border-himalaya-gold pb-1" : ""}`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

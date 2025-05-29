@@ -142,15 +142,15 @@ export default function Contact() {
                                     <div className="space-y-4">
                                         <div>
                                             <h3 className="font-semibold text-gray-900">Address</h3>
-                                            <p className="text-gray-600">P876+25V, JP Rd, Kathmandu 44600, Nepal</p>
+                                            <a href="https://maps.app.goo.gl/dXmMpy8mZdv848g17" target="_blank" rel="noopener noreferrer" className="text-himalaya-orange hover:underline">P876+25V, JP Rd, Kathmandu 44600, Nepal</a>
                                         </div>
                                         <div>
                                             <h3 className="font-semibold text-gray-900">Email</h3>
-                                            <p className="text-gray-600">lhasaligear@gmail.com</p>
+                                            <a href="mailto:lhasaligear@gmail.com" className="text-himalaya-orange hover:underline">lhasaligear@gmail.com</a>
                                         </div>
                                         <div>
                                             <h3 className="font-semibold text-gray-900">Phone</h3>
-                                            <p className="text-gray-600">+977 1234567890</p>
+                                            <a href="tel:+9771234567890" className="text-himalaya-orange hover:underline">+977 1234567890</a>
                                         </div>
                                         <div>
                                             <h3 className="font-semibold text-gray-900 mb-2">Follow Us</h3>
@@ -185,7 +185,13 @@ export default function Contact() {
                                 </div>
 
                                 {/* Map */}
-                                <div className="bg-white rounded-lg shadow-sm p-6">
+                                <a
+                                    href="https://maps.app.goo.gl/dXmMpy8mZdv848g17"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block bg-white rounded-lg shadow-sm p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                                    title="View on Google Maps"
+                                >
                                     <h2 className="text-2xl font-bold text-himalaya-maroon mb-6">Location</h2>
                                     <div className="aspect-video w-full overflow-hidden rounded-lg">
                                         <iframe
@@ -198,7 +204,7 @@ export default function Contact() {
                                             referrerPolicy="no-referrer-when-downgrade"
                                         />
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

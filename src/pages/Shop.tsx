@@ -493,11 +493,10 @@ export default function Shop() {
                                     {/* Product Info */}
                                     <div className="space-y-6">
                                         <div>
-                                            <Price
-                                                amount={selectedProduct.price}
-                                                originalCurrency="USD"
-                                                className="text-2xl font-semibold text-himalaya-orange"
-                                            />
+                                            <div className="text-2xl font-bold text-himalaya-maroon mb-2">{selectedProduct?.name}</div>
+                                            <div className="text-lg font-semibold text-himalaya-orange mb-4">
+                                                <Price amount={selectedProduct ? products.find(p => p.id === selectedProduct.id)?.price ?? selectedProduct.price : 0} />
+                                            </div>
                                         </div>
 
                                         <p className="text-gray-600">{selectedProduct.description}</p>

@@ -84,15 +84,32 @@ const TimelinePoint = ({
     </div>
 );
 
+// Decorative SVGs
+const Bird = () => (
+    <svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute left-2 top-2 md:left-12 md:top-8 z-20 opacity-80">
+        <path d="M2 30C10 10 38 10 46 30" stroke="#F26722" strokeWidth="3" fill="none" strokeLinecap="round" />
+        <circle cx="12" cy="12" r="2" fill="#F26722" />
+    </svg>
+);
+
+const Cloud = () => (
+    <svg width="80" height="32" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute right-2 top-8 md:right-12 md:top-16 z-10 opacity-60">
+        <ellipse cx="20" cy="20" rx="20" ry="12" fill="#F26722" fillOpacity="0.08" />
+        <ellipse cx="60" cy="16" rx="18" ry="10" fill="#F26722" fillOpacity="0.10" />
+    </svg>
+);
+
 export default function About() {
     const { scrollYProgress } = useScroll();
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
     const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col relative">
+            {/* Decorative Bird and Cloud */}
+            <Bird />
+            <Cloud />
             <Header />
-
             <main className="flex-grow">
                 {/* Lhasali Description Section */}
                 <section className="w-full bg-himalaya-orange py-8 md:py-10 px-4 md:px-2 pt-24 md:pt-28">
@@ -194,7 +211,6 @@ export default function About() {
                     </div>
                 </section>
             </main>
-
             <Footer />
         </div>
     );

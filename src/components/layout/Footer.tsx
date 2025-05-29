@@ -53,7 +53,7 @@ export default function Footer() {
               className="h-8 w-auto mb-4 mx-auto sm:mx-0"
             />
             <p className="text-himalaya-white/80 mb-4 text-sm md:text-base">
-              From the heights of the Himalayas to adventurers around the world, we craft excellence. Each piece reflects a story of heritage, innovation, and sustainable craftsmanship."
+              From the heights of the Himalayas to adventurers around the world, we craft excellence. Each piece reflects a story of heritage, innovation, and sustainable craftsmanship.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export default function Footer() {
             <ul className="space-y-2 text-himalaya-white/80 text-sm md:text-base">
               <li className="flex items-center gap-2 justify-center sm:justify-start">
                 <MapPin className="h-4 w-4 flex-shrink-0" />
-                <span>JP Road, Thamel, Kathmandu 44600, Nepal</span>
+                <a href="https://maps.app.goo.gl/dXmMpy8mZdv848g17" target="_blank" rel="noopener noreferrer" className="text-himalaya-orange hover:underline">JP Road, Thamel, Kathmandu 44600, Nepal</a>
               </li>
               <li className="flex items-center gap-2 justify-center sm:justify-start">
                 <Phone className="h-4 w-4 flex-shrink-0" />

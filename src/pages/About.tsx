@@ -45,23 +45,23 @@ const TimelinePoint = ({
     position?: "left" | "right";
 }) => (
     <div className="grid grid-cols-1 md:grid-cols-9 items-center w-full relative">
-        {/* Left milestone */}
+        {/* Left milestone (mobile: always show, desktop: left only) */}
         <div className={`md:col-span-4 ${position === "left" ? "flex justify-end" : ""} ${position === "right" ? "hidden md:flex" : ""}`}>
-            {(position === "left" || window.innerWidth < 768) && (
+            {(position === "left" || typeof window !== 'undefined' && window.innerWidth < 768) && (
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="inline-block p-4 md:p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-right md:text-right text-left w-full md:w-auto"
+                    className="inline-block p-3 md:p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-none md:shadow-lg text-left w-full md:w-auto mb-2 md:mb-0"
                 >
-                    <span className="text-himalaya-orange font-semibold">{year}</span>
-                    <h4 className="text-lg md:text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
-                    <p className="text-sm md:text-base text-gray-600 mt-2">{description}</p>
+                    <span className="text-himalaya-orange font-semibold text-base md:text-lg">{year}</span>
+                    <h4 className="text-base md:text-xl font-bold text-himalaya-maroon mt-1 md:mt-2">{title}</h4>
+                    <p className="text-xs md:text-base text-gray-600 mt-1 md:mt-2">{description}</p>
                 </motion.div>
             )}
         </div>
-        {/* Timeline dot only */}
+        {/* Timeline dot only (desktop only) */}
         <div className="hidden md:flex col-span-1 flex-col items-center relative z-10">
             <div className="w-6 h-6 bg-himalaya-maroon rounded-full border-4 border-white" />
         </div>
@@ -73,11 +73,11 @@ const TimelinePoint = ({
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="inline-block p-4 md:p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-left w-full md:w-auto"
+                    className="inline-block p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-left w-full md:w-auto"
                 >
-                    <span className="text-himalaya-orange font-semibold">{year}</span>
-                    <h4 className="text-lg md:text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
-                    <p className="text-sm md:text-base text-gray-600 mt-2">{description}</p>
+                    <span className="text-himalaya-orange font-semibold text-lg">{year}</span>
+                    <h4 className="text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
+                    <p className="text-base text-gray-600 mt-2">{description}</p>
                 </motion.div>
             )}
         </div>
@@ -196,8 +196,6 @@ export default function About() {
                                     }
                                 ].map((item, idx) => (
                                     <div key={item.year} className="relative">
-                                        {/* Mobile timeline dot */}
-                                        <div className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-himalaya-maroon rounded-full border-4 border-white z-10" />
                                         <TimelinePoint
                                             year={item.year}
                                             title={item.title}

@@ -127,10 +127,11 @@ export default function Footer() {
         {showScroll && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-6 right-6 z-50 bg-himalaya-orange hover:bg-himalaya-gold text-white rounded-full shadow-lg p-3 transition-all duration-300 flex items-center justify-center"
+            className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 bg-himalaya-orange hover:bg-himalaya-gold text-white rounded-full shadow-lg p-4 sm:p-3 transition-all duration-300 flex items-center justify-center active:scale-95"
+            style={{ boxShadow: '0 4px 16px 0 rgba(242,103,34,0.18)' }}
             aria-label="Scroll to top"
           >
-            <ArrowUp className="w-5 h-5" />
+            <ArrowUp className="w-6 h-6 sm:w-5 sm:h-5" />
           </button>
         )}
       </div>

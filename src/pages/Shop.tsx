@@ -82,7 +82,7 @@ const products: Product[] = [
         },
         colors: ["#8B3A3A", "#F5C16C", "#2D2D2D"],
         sizes: ["S", "M", "L"],
-        images: ["/bag1.jpg", "/bag2.jpg", "/bag3.jpg"]
+        images: ["/bag1.jpg", "/bag4.jpg", "/bag3.jpg"]
     },
     {
         id: 2,
@@ -99,7 +99,7 @@ const products: Product[] = [
         },
         colors: ["#E0B0FF", "#F5C16C"],
         sizes: ["S", "M", "L", "XL"],
-        images: ["/jacket1.jpg", "/jacket2.jpg", "/jacket3.jpg"]
+        images: ["/jacket1.jpg", "/jacket4.jpg", "/jacket3.jpg"]
     },
     {
         id: 3,

@@ -46,14 +46,14 @@ const TimelinePoint = ({
 }) => (
     <div className="grid grid-cols-1 md:grid-cols-9 items-center w-full relative">
         {/* Left milestone */}
-        <div className={`md:col-span-4 ${position === "left" ? "flex justify-end" : ""}`}>
-            {position === "left" && (
+        <div className={`md:col-span-4 ${position === "left" ? "flex justify-end" : ""} ${position === "right" ? "hidden md:flex" : ""}`}>
+            {(position === "left" || window.innerWidth < 768) && (
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="inline-block p-4 md:p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-right w-full md:w-auto"
+                    className="inline-block p-4 md:p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-right md:text-right text-left w-full md:w-auto"
                 >
                     <span className="text-himalaya-orange font-semibold">{year}</span>
                     <h4 className="text-lg md:text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
@@ -65,8 +65,8 @@ const TimelinePoint = ({
         <div className="hidden md:flex col-span-1 flex-col items-center relative z-10">
             <div className="w-6 h-6 bg-himalaya-maroon rounded-full border-4 border-white" />
         </div>
-        {/* Right milestone */}
-        <div className={`md:col-span-4 ${position === "right" ? "flex justify-start" : ""}`}>
+        {/* Right milestone (desktop only) */}
+        <div className={`md:col-span-4 ${position === "right" ? "flex justify-start" : "hidden md:flex"}`}>
             {position === "right" && (
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
@@ -202,7 +202,7 @@ export default function About() {
                                             year={item.year}
                                             title={item.title}
                                             description={item.description}
-                                            position={idx % 2 === 0 ? "left" : "right"}
+                                            position={typeof window !== 'undefined' && window.innerWidth < 768 ? "left" : idx % 2 === 0 ? "left" : "right"}
                                         />
                                     </div>
                                 ))}

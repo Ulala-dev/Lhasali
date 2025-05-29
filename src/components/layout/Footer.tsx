@@ -44,23 +44,23 @@ export default function Footer() {
         </svg>
       </div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {/* Brand */}
-          <div>
+          <div className="text-center sm:text-left">
             <img
               src="/logo new.png"
               alt="Lhasali Gear"
-              className="h-8 w-auto mb-4"
+              className="h-8 w-auto mb-4 mx-auto sm:mx-0"
             />
-            <p className="text-himalaya-white/80 mb-4">
-              From the heights of the Himalayas to adventurers around the world, we craft excellence. Each piece reflects a story of heritage, innovation, and sustainable craftsmanship.”
+            <p className="text-himalaya-white/80 mb-4 text-sm md:text-base">
+              From the heights of the Himalayas to adventurers around the world, we craft excellence. Each piece reflects a story of heritage, innovation, and sustainable craftsmanship."
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-himalaya-gold font-medium mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-himalaya-white/80">
+          <div className="text-center sm:text-left">
+            <h4 className="text-himalaya-gold font-medium mb-4 text-base md:text-lg">Quick Links</h4>
+            <ul className="space-y-2 text-himalaya-white/80 text-sm md:text-base">
               <li><Link to="/about" className="hover:text-himalaya-gold transition-colors">Our Story</Link></li>
               <li><Link to="/shop" className="hover:text-himalaya-gold transition-colors">Products</Link></li>
               <li><Link to="/contact" className="hover:text-himalaya-gold transition-colors">Contact Us</Link></li>
@@ -68,19 +68,19 @@ export default function Footer() {
           </div>
 
           {/* Contact Information */}
-          <div>
-            <h4 className="text-himalaya-gold font-medium mb-4">Contact Us</h4>
-            <ul className="space-y-2 text-himalaya-white/80">
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                JP Road, Thamel, Kathmandu 44600, Nepal
+          <div className="text-center sm:text-left">
+            <h4 className="text-himalaya-gold font-medium mb-4 text-base md:text-lg">Contact Us</h4>
+            <ul className="space-y-2 text-himalaya-white/80 text-sm md:text-base">
+              <li className="flex items-center gap-2 justify-center sm:justify-start">
+                <MapPin className="h-4 w-4 flex-shrink-0" />
+                <span>JP Road, Thamel, Kathmandu 44600, Nepal</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
+              <li className="flex items-center gap-2 justify-center sm:justify-start">
+                <Phone className="h-4 w-4 flex-shrink-0" />
                 <a href="tel:+9771234567890" className="hover:underline">+977 1234567890</a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
+              <li className="flex items-center gap-2 justify-center sm:justify-start">
+                <Mail className="h-4 w-4 flex-shrink-0" />
                 <a href="mailto:lhasaligear@gmail.com" className="hover:underline">lhasaligear@gmail.com</a>
               </li>
             </ul>
@@ -89,7 +89,7 @@ export default function Footer() {
 
         {/* Footer bottom */}
         <div className="border-t border-himalaya-white/20 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-himalaya-white/80 mb-2 md:mb-0 text-center md:text-left">
+          <p className="text-sm text-himalaya-white/80 text-center md:text-left">
             © {new Date().getFullYear()} Lhasali Gear. All rights reserved.
           </p>
           <div className="flex space-x-6 justify-center md:justify-end w-full md:w-auto">
@@ -98,8 +98,8 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="animated-footer-icon text-himalaya-white/80 hover:text-himalaya-gold transition-colors"
+              aria-label="Facebook"
             >
-              <span className="sr-only">Facebook</span>
               <Facebook className="w-5 h-5" />
             </a>
             <a
@@ -107,8 +107,8 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="animated-footer-icon text-himalaya-white/80 hover:text-himalaya-gold transition-colors"
+              aria-label="Instagram"
             >
-              <span className="sr-only">Instagram</span>
               <Instagram className="w-5 h-5" />
             </a>
             <a
@@ -116,8 +116,8 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="animated-footer-icon text-himalaya-white/80 hover:text-himalaya-gold transition-colors"
+              aria-label="TikTok"
             >
-              <span className="sr-only">TikTok</span>
               <FaTiktok className="w-5 h-5" />
             </a>
           </div>
@@ -127,10 +127,10 @@ export default function Footer() {
         {showScroll && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-8 right-8 z-50 bg-himalaya-orange hover:bg-himalaya-gold text-white rounded-full shadow-lg p-3 transition-all duration-300 flex items-center justify-center"
+            className="fixed bottom-6 right-6 z-50 bg-himalaya-orange hover:bg-himalaya-gold text-white rounded-full shadow-lg p-3 transition-all duration-300 flex items-center justify-center"
             aria-label="Scroll to top"
           >
-            <ArrowUp className="w-6 h-6" />
+            <ArrowUp className="w-5 h-5" />
           </button>
         )}
       </div>

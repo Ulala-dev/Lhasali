@@ -121,15 +121,15 @@ const BirdSVG = ({ width = 40, height = 20, color = "#5A1212", opacity = 0.7 }) 
 
 export default function FeaturedCollections() {
   return (
-    <section className="relative py-16 overflow-hidden">
+    <section className="relative py-12 sm:py-16 overflow-hidden">
       {/* Animated Gradient Background */}
       <style dangerouslySetInnerHTML={{ __html: gradientStyles }} />
       <div className="absolute inset-0 w-full h-full animated-gradient-bg z-0" aria-hidden="true" />
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-3xl font-bold text-himalaya-maroon mb-8 text-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-himalaya-maroon mb-6 sm:mb-8 text-center">
           Featured Collections
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {collections.map((collection) => (
             <Link
               key={collection.title}
@@ -137,15 +137,15 @@ export default function FeaturedCollections() {
               className="block"
             >
               <Card
-                className="group relative overflow-hidden aspect-[4/5] cursor-pointer"
+                className="group relative overflow-hidden aspect-[4/5] cursor-pointer rounded-lg sm:rounded-xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
                 <div
-                  className="absolute inset-0 bg-cover bg-center transform transition-transform group-hover:scale-110"
+                  className="absolute inset-0 bg-cover bg-center transform transition-transform duration-500 group-hover:scale-110"
                   style={{ backgroundImage: `url(${collection.image})` }}
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-20">
-                  <h3 className="text-xl font-semibold">{collection.title}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white z-20">
+                  <h3 className="text-lg sm:text-xl font-semibold">{collection.title}</h3>
                 </div>
               </Card>
             </Link>

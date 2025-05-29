@@ -308,148 +308,130 @@ export default function Shop() {
     return (
         <div className="min-h-screen flex flex-col">
             <Header />
-
-            <main className="flex-grow pt-24 flex flex-col items-center justify-center">
-                {/* Product Filters and Search */}
-                <section className="py-8 border-b bg-white/80 backdrop-blur-sm">
-                    <div className="container mx-auto px-4">
-                        <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
-                            <div className="w-full md:w-80">
-                                <div className="relative">
-                                    <Input
-                                        placeholder="Search products..."
-                                        className="w-full rounded-full border-2 border-himalaya-maroon/20 shadow-sm focus:border-himalaya-maroon focus:ring-himalaya-maroon/30 px-5 py-3 text-base"
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                    />
-                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-himalaya-maroon/60 pointer-events-none">
-                                        <Search className="h-5 w-5" />
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-4 w-full md:w-auto">
-                                <div className="flex gap-2 items-center">
-                                    <Filter className="h-5 w-5 text-himalaya-maroon/70" />
-                                    <span className="text-himalaya-maroon font-semibold">Filter:</span>
-                                </div>
-                                <div className="relative">
-                                    <select className="rounded-full border-2 border-himalaya-maroon/20 bg-white px-5 py-2 shadow-sm text-base focus:border-himalaya-maroon focus:ring-himalaya-maroon/30 appearance-none pr-10">
-                                        <option>All Categories</option>
-                                        {allCategories.map(category => (
-                                            <option key={category}>{category}</option>
-                                        ))}
-                                    </select>
-                                    <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-himalaya-maroon/60">
-                                        <ChevronDown className="h-4 w-4" />
-                                    </span>
-                                </div>
-
-                                <div className="relative">
-                                    <select
-                                        className="rounded-full border-2 border-himalaya-maroon/20 bg-white px-5 py-2 shadow-sm text-base focus:border-himalaya-maroon focus:ring-himalaya-maroon/30 appearance-none pr-10"
-                                        value={sortBy}
-                                        onChange={(e) => setSortBy(e.target.value)}
-                                    >
-                                        <option value="latest">Sort by: Latest</option>
-                                        <option value="price-low">Price: Low to High</option>
-                                        <option value="price-high">Price: High to Low</option>
-                                    </select>
-                                    <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-himalaya-maroon/60">
-                                        <ChevronDown className="h-4 w-4" />
-                                    </span>
-                                </div>
-                            </div>
+            <main className="flex-grow pt-16">
+                {/* Search and Filter Section */}
+                <div className="container mx-auto px-4 py-8">
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8">
+                        <div className="w-full sm:w-auto flex gap-2">
+                            <Input
+                                type="text"
+                                placeholder="Search products..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full sm:w-64"
+                            />
+                            <Button variant="outline" size="icon" className="shrink-0">
+                                <Search className="h-4 w-4" />
+                            </Button>
+                        </div>
+                        <div className="flex gap-2">
+                            <Button
+                                variant={viewMode === "grid" ? "default" : "outline"}
+                                size="icon"
+                                onClick={() => setViewMode("grid")}
+                            >
+                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="3" width="7" height="7" />
+                                    <rect x="14" y="3" width="7" height="7" />
+                                    <rect x="3" y="14" width="7" height="7" />
+                                    <rect x="14" y="14" width="7" height="7" />
+                                </svg>
+                            </Button>
+                            <Button
+                                variant={viewMode === "list" ? "default" : "outline"}
+                                size="icon"
+                                onClick={() => setViewMode("list")}
+                            >
+                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <line x1="3" y1="6" x2="21" y2="6" />
+                                    <line x1="3" y1="12" x2="21" y2="12" />
+                                    <line x1="3" y1="18" x2="21" y2="18" />
+                                </svg>
+                            </Button>
                         </div>
                     </div>
-                </section>
 
-                {/* Category Badges */}
-                <section className="py-6">
-                    <div className="container mx-auto px-4">
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            <button
+                    {/* Categories */}
+                    <div className="mb-8">
+                        <div className="flex flex-wrap gap-2">
+                            <Button
+                                variant={selectedCategory === "All" ? "default" : "outline"}
+                                size="sm"
                                 onClick={() => setSelectedCategory("All")}
-                                className={`px-5 py-2 rounded-full border text-sm font-semibold transition-all duration-200
-                                    ${selectedCategory === "All"
-                                        ? "bg-himalaya-maroon text-white border-himalaya-maroon shadow"
-                                        : "bg-white text-himalaya-maroon border-himalaya-maroon/30 hover:bg-himalaya-maroon/10"}
-                                `}
                             >
                                 All
-                            </button>
-                            {displayedCategories.map(category => (
-                                <button
+                            </Button>
+                            {popularCategories.map((category) => (
+                                <Button
                                     key={category}
+                                    variant={selectedCategory === category ? "default" : "outline"}
+                                    size="sm"
                                     onClick={() => setSelectedCategory(category)}
-                                    className={`px-5 py-2 rounded-full border text-sm font-semibold transition-all duration-200
-                                    ${selectedCategory === category
-                                            ? "bg-himalaya-maroon text-white border-himalaya-maroon shadow"
-                                            : "bg-white text-himalaya-maroon border-himalaya-maroon/30 hover:bg-himalaya-maroon/10"}
-                                `}
                                 >
                                     {category}
-                                </button>
+                                </Button>
                             ))}
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setShowAllCategories(!showAllCategories)}
+                                className="flex items-center gap-1"
+                            >
+                                More
+                                <ChevronDown className={`h-4 w-4 transition-transform ${showAllCategories ? "rotate-180" : ""}`} />
+                            </Button>
                         </div>
-                        {!showAllCategories && (
-                            <div className="text-center mt-4">
-                                <button
-                                    onClick={() => setShowAllCategories(true)}
-                                    className="text-himalaya-maroon hover:text-himalaya-orange text-sm font-medium"
-                                >
-                                    Show All Categories
-                                </button>
+                        {showAllCategories && (
+                            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+                                {allCategories.map((category) => (
+                                    <Button
+                                        key={category}
+                                        variant={selectedCategory === category ? "default" : "outline"}
+                                        size="sm"
+                                        onClick={() => setSelectedCategory(category)}
+                                        className="justify-start"
+                                    >
+                                        {category}
+                                    </Button>
+                                ))}
                             </div>
                         )}
                     </div>
-                </section>
 
-                {/* Products Grid */}
-                <section className="py-12 products-section">
-                    <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {sortedProducts.map(product => (
+                    {/* Products Grid */}
+                    <div className={`grid ${viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"} gap-6`}>
+                        {products
+                            .filter(product => {
+                                const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                    product.description.toLowerCase().includes(searchQuery.toLowerCase());
+                                const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+                                return matchesSearch && matchesCategory;
+                            })
+                            .map((product) => (
                                 <div
                                     key={product.id}
-                                    className="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-himalaya-maroon/30 group cursor-pointer"
+                                    className={`group relative ${viewMode === "list" ? "flex gap-4" : ""} cursor-pointer`}
                                     onClick={() => setSelectedProduct(product)}
                                 >
-                                    <div className="aspect-square overflow-hidden relative">
+                                    <div className={`relative overflow-hidden rounded-lg ${viewMode === "list" ? "w-1/3" : "aspect-square"}`}>
                                         <img
                                             src={product.image}
                                             alt={product.name}
                                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                         />
+                                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </div>
-                                    <div className="p-4">
-                                        <span className="text-sm text-gray-500">{product.category}</span>
-                                        <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
-                                        {/* Color Swatches */}
-                                        {productColors[product.id] && (
-                                            <div className="flex gap-2 mb-2">
-                                                {productColors[product.id].map((color, idx) => (
-                                                    <span
-                                                        key={color + idx}
-                                                        className="w-4 h-4 rounded-full border border-gray-300"
-                                                        style={{ backgroundColor: color }}
-                                                    />
-                                                ))}
-                                            </div>
-                                        )}
-                                        <div className="flex justify-between items-center">
-                                            <Price
-                                                amount={product.price}
-                                                originalCurrency="USD"
-                                                className="font-bold text-himalaya-maroon"
-                                            />
+                                    <div className={`p-4 ${viewMode === "list" ? "flex-1" : ""}`}>
+                                        <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+                                        <p className="text-sm text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                                        <div className="flex items-center justify-between">
+                                            <Price amount={product.price} />
                                         </div>
                                     </div>
                                 </div>
                             ))}
-                        </div>
                     </div>
-                </section>
+                </div>
 
                 {/* Product Details Modal */}
                 {selectedProduct && (
@@ -495,8 +477,7 @@ export default function Shop() {
                                             {selectedProduct.images.map((image, index) => (
                                                 <div
                                                     key={index}
-                                                    className={`aspect-square rounded-lg overflow-hidden cursor-pointer transition-opacity hover:opacity-75 ${index === currentImageIndex ? 'ring-2 ring-himalaya-maroon' : ''
-                                                        }`}
+                                                    className={`aspect-square rounded-lg overflow-hidden cursor-pointer transition-opacity hover:opacity-75 ${index === currentImageIndex ? 'ring-2 ring-himalaya-maroon' : ''}`}
                                                     onClick={(e) => handleThumbnailClick(index, e)}
                                                 >
                                                     <img
@@ -573,7 +554,6 @@ export default function Shop() {
                     </div>
                 )}
             </main>
-
             <Footer />
         </div>
     );

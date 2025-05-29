@@ -44,40 +44,40 @@ const TimelinePoint = ({
     description: string;
     position?: "left" | "right";
 }) => (
-    <div className="grid grid-cols-9 items-center w-full relative">
+    <div className="grid grid-cols-1 md:grid-cols-9 items-center w-full relative">
         {/* Left milestone */}
-        <div className={`col-span-4 ${position === "left" ? "flex justify-end" : ""}`}>
+        <div className={`md:col-span-4 ${position === "left" ? "flex justify-end" : ""}`}>
             {position === "left" && (
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="inline-block p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-right"
+                    className="inline-block p-4 md:p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-right w-full md:w-auto"
                 >
                     <span className="text-himalaya-orange font-semibold">{year}</span>
-                    <h4 className="text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
-                    <p className="text-gray-600 mt-2">{description}</p>
+                    <h4 className="text-lg md:text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
+                    <p className="text-sm md:text-base text-gray-600 mt-2">{description}</p>
                 </motion.div>
             )}
         </div>
         {/* Timeline dot only */}
-        <div className="col-span-1 flex flex-col items-center relative z-10">
+        <div className="hidden md:flex col-span-1 flex-col items-center relative z-10">
             <div className="w-6 h-6 bg-himalaya-maroon rounded-full border-4 border-white" />
         </div>
         {/* Right milestone */}
-        <div className={`col-span-4 ${position === "right" ? "flex justify-start" : ""}`}>
+        <div className={`md:col-span-4 ${position === "right" ? "flex justify-start" : ""}`}>
             {position === "right" && (
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="inline-block p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-left"
+                    className="inline-block p-4 md:p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg text-left w-full md:w-auto"
                 >
                     <span className="text-himalaya-orange font-semibold">{year}</span>
-                    <h4 className="text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
-                    <p className="text-gray-600 mt-2">{description}</p>
+                    <h4 className="text-lg md:text-xl font-bold text-himalaya-maroon mt-2">{title}</h4>
+                    <p className="text-sm md:text-base text-gray-600 mt-2">{description}</p>
                 </motion.div>
             )}
         </div>
@@ -95,19 +95,19 @@ export default function About() {
 
             <main className="flex-grow">
                 {/* Lhasali Description Section */}
-                <section className="w-full bg-himalaya-orange py-10 px-2 pt-28">
+                <section className="w-full bg-himalaya-orange py-8 md:py-10 px-4 md:px-2 pt-24 md:pt-28">
                     <div className="max-w-2xl mx-auto flex flex-col items-center text-center text-white">
-                        <div className="mb-6">
-                            <span className="text-3xl md:text-4xl font-bold tracking-widest font-header">LHASALI</span>
+                        <div className="mb-4 md:mb-6">
+                            <span className="text-2xl md:text-4xl font-bold tracking-widest font-header">LHASALI</span>
                         </div>
-                        <div className="mb-6">
-                            <p className="text-base md:text-lg mb-2">
-                                WHETHER YOU ARE SKIING ON THE FROSTY SLOPES OF A HIGH MOUNTAIN, TRAVERSING AT STEEP ROAD, SURFING A WILD WAVE OR MOUNTAIN BIKING DOWN A FORESTED PATH, YOU WILL BE USING THE BEST LHASALI PRODUCT. WE DEVELOP AND TEST ALL OUR PRODUCTS IN EXTREME ENVIRONMENTS ENSURING SAFETY AND QUALITY.<br />
+                        <div className="mb-4 md:mb-6">
+                            <p className="text-sm md:text-lg mb-2">
+                                Whether you are skiing on the frosty slopes of a high mountain, traversing a steep road, surfing a wild wave or mountain biking down a forested path, you will be using the best Lhasali product. We develop and test all our products in extreme environments, ensuring safety and quality.<br />
                                 LHASALI: AN AGELESS ADVENTURE
                             </p>
                         </div>
-                        <div className="mb-6">
-                            <p className="text-base md:text-lg mb-2">
+                        <div className="mb-4 md:mb-6">
+                            <p className="text-sm md:text-lg mb-2">
                                 पहाडको उकालि–ओराली, चिसो अनि चिप्लो बाटोहरूमा चिप्लेटी खेल्दैका यात्रा होस् या जंगलको अलौकिक सुन्दरता नियाल्दै गरिने साइकल यात्रा, अति कठिन वातावरणमा पनि तपाईले सुरक्षित, उच्च गुणस्तरीय उत्कृष्ट ल्हासाली उत्पादनहरूको रोमाञ्चक अनुभव गर्नुहुनेछ ।<br />
                                 LHASALI: AN AGELESS ADVENTURE
                             </p>
@@ -116,12 +116,12 @@ export default function About() {
                 </section>
 
                 {/* Values Section */}
-                <section className="py-20 relative bg-himalaya-white">
+                <section className="py-12 md:py-20 relative bg-himalaya-white">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-4xl font-bold text-himalaya-maroon text-center mb-16">
+                        <h2 className="text-2xl md:text-4xl font-bold text-himalaya-maroon text-center mb-8 md:mb-16">
                             Our Core Values
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                             <Section
                                 title="Heritage"
                                 content="Rooted in Himalayan traditions, we honor centuries of mountain wisdom in every piece we create."
@@ -147,15 +147,15 @@ export default function About() {
                 </section>
 
                 {/* Timeline Section */}
-                <section className="py-20 relative bg-gradient-to-b from-himalaya-white via-himalaya-maroon/10 to-himalaya-orange/10">
+                <section className="py-12 md:py-20 relative bg-gradient-to-b from-himalaya-white via-himalaya-maroon/10 to-himalaya-orange/10">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-4xl font-bold text-himalaya-maroon text-center mb-16">
+                        <h2 className="text-2xl md:text-4xl font-bold text-himalaya-maroon text-center mb-8 md:mb-16">
                             Our Journey
                         </h2>
                         <div className="relative">
                             {/* Timeline vertical line */}
                             <div className="hidden md:block absolute left-1/2 top-0 w-1 h-full -translate-x-1/2 bg-himalaya-maroon/40 z-0" />
-                            <div className="flex flex-col gap-16">
+                            <div className="flex flex-col gap-8 md:gap-16">
                                 {[
                                     {
                                         year: "2015",
@@ -178,13 +178,16 @@ export default function About() {
                                         description: "Built a worldwide network of mountain enthusiasts and local artisans."
                                     }
                                 ].map((item, idx) => (
-                                    <TimelinePoint
-                                        key={item.year}
-                                        year={item.year}
-                                        title={item.title}
-                                        description={item.description}
-                                        position={idx % 2 === 0 ? "left" : "right"}
-                                    />
+                                    <div key={item.year} className="relative">
+                                        {/* Mobile timeline dot */}
+                                        <div className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-himalaya-maroon rounded-full border-4 border-white z-10" />
+                                        <TimelinePoint
+                                            year={item.year}
+                                            title={item.title}
+                                            description={item.description}
+                                            position={idx % 2 === 0 ? "left" : "right"}
+                                        />
+                                    </div>
                                 ))}
                             </div>
                         </div>

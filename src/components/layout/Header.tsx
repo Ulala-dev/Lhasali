@@ -25,9 +25,21 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    // Get the current path and update when it changes
     setCurrentPath(window.location.pathname);
   }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.menu-button')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,33 +58,33 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-himalaya-maroon">
-      {/* Navigation & Logo merged */}
-      <div
-        className={cn(
-          "border-t border-himalaya-orange/20",
-          "py-4 md:py-6"
-        )}
-      >
+    <header className={cn(
+      "fixed top-0 left-0 right-0 z-50 bg-himalaya-maroon transition-all duration-300",
+      isScrolled ? "shadow-lg" : ""
+    )}>
+      <div className={cn(
+        "border-t border-himalaya-orange/20",
+        "py-3 md:py-4"
+      )}>
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 items-center gap-2">
+          <div className="flex items-center justify-between md:grid md:grid-cols-3 md:items-center md:gap-2">
             {/* Logo (left) */}
-            <a href="/" className="flex justify-start col-span-1">
+            <a href="/" className="flex items-center h-full">
               <img
                 src="/logo new.png"
                 alt="Lhasali Gear"
-                className="h-10 w-auto md:h-12"
+                className="h-8 w-auto md:h-12"
               />
             </a>
 
             {/* Desktop nav (center) */}
-            <nav className="hidden md:flex items-center justify-center space-x-8 col-span-1">
+            <nav className="hidden md:flex items-center justify-center space-x-8 md:col-span-1">
               {navLinks.map(link => (
                 <a
                   key={link.href}
                   href={link.href}
                   rel="noopener noreferrer"
-                  className={`text-white hover:text-white/80 transition-colors font-bold uppercase tracking-[0.05em] font-header
+                  className={`text-white hover:text-white/80 transition-colors font-bold uppercase tracking-[0.05em] font-header text-sm md:text-base
                     ${currentPath === link.href ? "border-b-2 border-himalaya-gold pb-1 font-header" : ""}`}
                 >
                   {link.label}
@@ -81,12 +93,12 @@ export default function Header() {
             </nav>
 
             {/* Actions (right) */}
-            <div className="flex items-center justify-end space-x-4 col-span-1">
+            <div className="flex items-center justify-end md:col-span-1">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={toggleCurrency}
-                className="text-white hover:text-white/80"
+                className="text-white hover:text-white/80 hidden sm:inline-flex"
               >
                 {currency}
               </Button>
@@ -95,9 +107,10 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden text-white"
+                className="md:hidden text-white menu-button flex items-center justify-center h-10 w-10"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                style={{ minHeight: 40, minWidth: 40 }}
               >
                 {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
@@ -107,23 +120,37 @@ export default function Header() {
       </div>
 
       {/* Mobile navigation menu */}
-      {isMenuOpen && (
-        <nav className="md:hidden mt-4 pb-4 border-t border-himalaya-orange/20">
-          <div className="flex flex-col space-y-4 pt-4">
-            {navLinks.map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                rel="noopener noreferrer"
-                className={`text-white hover:text-white/80 transition-colors font-bold uppercase text-[1.2rem] tracking-[0.05em] font-header
-                  ${currentPath === link.href ? "border-b-2 border-himalaya-gold pb-1" : ""}`}
+      <div className={cn(
+        "md:hidden transition-all duration-300 ease-in-out overflow-hidden",
+        isMenuOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+      )}>
+        <nav className="mobile-menu bg-himalaya-maroon border-t border-himalaya-orange/20">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex flex-col space-y-4">
+              {navLinks.map(link => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-white hover:text-white/80 transition-colors font-bold uppercase text-base tracking-[0.05em] font-header
+                    ${currentPath === link.href ? "border-b-2 border-himalaya-gold pb-1" : ""}`}
+                >
+                  {link.label}
+                </a>
+              ))}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleCurrency}
+                className="text-white hover:text-white/80 sm:hidden w-full justify-start"
               >
-                {link.label}
-              </a>
-            ))}
+                {currency}
+              </Button>
+            </div>
           </div>
         </nav>
-      )}
+      </div>
     </header>
   );
 }

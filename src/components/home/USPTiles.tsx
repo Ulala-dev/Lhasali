@@ -43,25 +43,27 @@ export default function USPTiles() {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 sm:py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-himalaya-maroon text-center mb-12">Lhasali Features</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-himalaya-maroon text-center mb-8 sm:mb-12">Lhasali Features</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 justify-items-center">
           {features.map((feature, index) => (
             <Popover key={index}>
               <PopoverTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="w-full h-full p-8 rounded-2xl border border-gray-100 bg-white shadow transition-all duration-300 hover:shadow-lg hover:shadow-himalaya-maroon/40 hover:-translate-y-1 cursor-pointer"
+                  className="w-full h-full p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-gray-100 bg-white shadow transition-all duration-300 hover:shadow-lg hover:shadow-himalaya-maroon/40 hover:-translate-y-1 cursor-pointer"
                 >
                   <div className="flex flex-col items-center text-center">
-                    {feature.icon}
-                    <p className="mt-4 text-lg text-gray-800 font-semibold tracking-wide">{feature.text}</p>
+                    <div className="h-6 w-6 sm:h-8 sm:w-8 text-himalaya-orange">
+                      {feature.icon}
+                    </div>
+                    <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-800 font-semibold tracking-wide">{feature.text}</p>
                   </div>
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-80">
-                <p className="text-center text-gray-700">{feature.description}</p>
+              <PopoverContent className="w-[280px] sm:w-80 p-4">
+                <p className="text-sm sm:text-base text-center text-gray-700">{feature.description}</p>
               </PopoverContent>
             </Popover>
           ))}

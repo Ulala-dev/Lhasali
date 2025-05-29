@@ -58,7 +58,7 @@ export default function StoryStrip() {
   const { language } = useLanguage();
 
   return (
-    <section id="story-strip" className="relative py-16 overflow-hidden bg-white">
+    <section id="story-strip" className="relative py-12 sm:py-16 overflow-hidden bg-white">
       {/* Animated Maroon Clouds and Birds */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0" aria-hidden="true">
         {/* Clouds */}
@@ -107,24 +107,24 @@ export default function StoryStrip() {
       {/* Cloud & Bird Animations Style */}
       <style dangerouslySetInnerHTML={{ __html: cloudStyles }} />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-himalaya-maroon mb-4">Our Story</h2>
-            <p className="text-gray-700 leading-relaxed mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl sm:text-3xl font-bold text-himalaya-maroon mb-4">Our Story</h2>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6">
               For centuries, people have journeyed from Kathmandu (Nepal) to Lhasa (Tibet) and back, undertaking a demanding and arduous expedition. They would reach Hetauda and then travel by lorry to Raxaul which is one of several routes leading to Lhasa. From Raxaul, they would take a train to Siliguri and continue to Kalimpong by truck or any available means. The journey from there grew even more challenging as they navigated on foot, rode horses, and crossed lakes in makeshift boats. After a grueling caravan trek lasting 25 to 30 days, they finally reached Lhasa.
             </p>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              These travelers’ lives became those of true caravan adventurers as they had to set up camp for days at a time before pressing onward without regard for the hardships faced. Their dedication to trading goods, exchanging cultures, and forging bonds across lands earned them the name 'Lhasalis.' In tribute to their unwavering spirit, we present our brand name ‘Lhasali’ to serve everyone with an ageless adventure.
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6">
+              These travelers' lives became those of true caravan adventurers as they had to set up camp for days at a time before pressing onward without regard for the hardships faced. Their dedication to trading goods, exchanging cultures, and forging bonds across lands earned them the name 'Lhasalis.' In tribute to their unwavering spirit, we present our brand name 'Lhasali' to serve everyone with an ageless adventure.
             </p>
             <Button
               variant="link"
-              className="text-himalaya-orange hover:text-himalaya-gold"
+              className="text-himalaya-orange hover:text-himalaya-gold text-sm sm:text-base"
               asChild
             >
               <a href="/about">Read more</a>
             </Button>
           </div>
-          <div className="aspect-[4/3] relative overflow-hidden rounded-lg">
+          <div className="aspect-[4/3] relative overflow-hidden rounded-lg shadow-lg">
             <img
               src="lhasa.png"
               alt="Historic caravan"

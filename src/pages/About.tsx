@@ -175,24 +175,29 @@ export default function About() {
                             <div className="flex flex-col gap-8 md:gap-16">
                                 {[
                                     {
-                                        year: "2015",
-                                        title: "The Beginning",
-                                        description: "Founded in the heart of the Himalayas, we started with a simple mission: to create gear that honors mountain traditions."
+                                        year: "Mid 2022",
+                                        title: "Launch of Lhasali T-Shirt Collection",
+                                        description: "We debuted lightweight, high-altitude-ready T-shirts in small batches for local trekkers, friends, and family—combining modern performance fabrics with the spirit of Lhasa."
                                     },
                                     {
-                                        year: "2018",
-                                        title: "Expanding Horizons",
-                                        description: "Launched our first international collection, bringing Himalayan craftsmanship to the world."
+                                        year: "Late 2022",
+                                        title: "Initial Feedback & Strategic Planning",
+                                        description: "Over three months we gathered detailed insights from guides and trekker friends on fit, fabric, and functionality, using their input to map out our expanded product roadmap."
                                     },
                                     {
-                                        year: "2020",
-                                        title: "Innovation Hub",
-                                        description: "Established our research center to blend traditional techniques with modern technology."
+                                        year: "Early 2023",
+                                        title: "Introduction of the Lhasali Trekking Bag",
+                                        description: "We rolled out our first trekking pack: a durable, water-resistant design with adjustable straps, rain cover, and multiple capacity options, validating demand for a full gear range."
                                     },
                                     {
-                                        year: "2023",
-                                        title: "Global Community",
-                                        description: "Built a worldwide network of mountain enthusiasts and local artisans."
+                                        year: "Late 2023",
+                                        title: "Prototype Testing & Thamel Shop Opening",
+                                        description: "Field-testing jackets, sticks, gloves, and inner layers with experienced trekkers led to key refinements, while quietly launching our first retail location in Thamel with limited runs of core items."
+                                    },
+                                    {
+                                        year: "2024",
+                                        title: "Production of High-Altitude Performance Gear",
+                                        description: "We moved into small-scale manufacturing of insulated down jackets and technical base layers optimized for sub-zero conditions—featuring stronger zippers, enhanced padding, and eco-friendly, weather-resistant materials."
                                     }
                                 ].map((item, idx) => (
                                     <div key={item.year} className="relative">
@@ -205,6 +210,26 @@ export default function About() {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Founder Message Section */}
+                <section className="py-12 md:py-20 bg-himalaya-white/90">
+                    <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                        <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center">
+                            <img
+                                src="/message.jpeg"
+                                alt="Founder's Father'"
+                                className="rounded-2xl shadow-lg object-cover w-64 h-80 md:w-80 md:h-96 border-4 border-himalaya-maroon/30"
+                            />
+                        </div>
+                        <div className="w-full md:w-2/3">
+                            <h2 className="text-2xl md:text-4xl font-bold text-himalaya-maroon mb-4">A Tribute To Our Founder's Father</h2>
+                            <p className="text-gray-800 text-base md:text-lg leading-relaxed bg-white/80 p-6 rounded-xl shadow">
+                                My father, Mr. Ram Bahadur Timilsina, earned the affectionate title of "Lhasali Dai" from his friends and peers and "Lhasali Baa" from those younger than him. For many years, his journeys were filled with rugged landscapes and mountain ridges. The trips to his destinations didn't last a day or two but stretched on for months, as he traveled miles from family and friends by foot, mule, train, and yak to reach Lhasa. These journeys were not only about trade but also about building bridges between cultures. I grew up listening to these inspiring stories of my father—and they are simply mesmerizing.<br /><br />
+                                Lhasali is more than just a trekking gear brand; it is a tribute to the legacy of the Lhasali traders and my father's enduring spirit. This photograph is a reminder of the journey he undertook, the challenges he faced, and the legacy he built. It recalls the values he spoke of, values that gradually inspired me to introduce the Nepali brand "Lhasali," to build something of our own from Nepal and share it with the world.
+                            </p>
                         </div>
                     </div>
                 </section>
